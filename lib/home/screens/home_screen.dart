@@ -20,31 +20,29 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SearchSugestionBar(),
-              BlocBuilder<GetimagelistBloc, GetimagelistState>(
-                builder: (context, state) {
-                  if (state is GetimagelistSuccess) {
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height * 100,
-                      child: ListView.builder(
-                          itemCount: state.imageList.length,
-                          itemBuilder: (context, i) => CustomImageCard(
-                                imgUrl: state.imageList[i].largeImageURL,
-                              )),
-                    );
-                  }
-                  return Container();
-                },
-              )
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SearchSugestionBar(),
+            BlocBuilder<GetimagelistBloc, GetimagelistState>(
+              builder: (context, state) {
+                if (state is GetimagelistSuccess) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height * 100,
+                    child: ListView.builder(
+                        itemCount: state.imageList.length,
+                        itemBuilder: (context, i) => CustomImageCard(
+                              imgUrl: state.imageList[i].largeImageURL,
+                            )),
+                  );
+                }
+                return Container();
+              },
+            )
+          ],
         ),
       ),
     );
