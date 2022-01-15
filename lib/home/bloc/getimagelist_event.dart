@@ -7,4 +7,8 @@ abstract class GetimagelistEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchImageListEvent extends GetimagelistEvent {}
+class FetchImageListEvent extends GetimagelistEvent {
+  final String searchQuery;
+
+  const FetchImageListEvent(this.searchQuery);
+}

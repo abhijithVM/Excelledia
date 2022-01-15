@@ -10,15 +10,15 @@ class GetimagelistBloc extends Bloc<GetimagelistEvent, GetimagelistState> {
   GetimagelistBloc() : super(GetimagelistInitial()) {
     on<GetimagelistEvent>((event, emit) {
       if (event is FetchImageListEvent) {
-        orderProductState();
+        orderProductState(event.searchQuery);
       }
     });
   }
 
-  Stream<GetimagelistState> orderProductState() async* {
+  Stream<GetimagelistState> orderProductState(String searchQuery) async* {
     yield GetimagelistLoading();
 
-    final dataResponse = await _imageDataSource.getImageList();
+    final dataResponse = await _imageDataSource.getImageList(searchQuery);
 
     if (dataResponse.isNotEmpty) {
       yield GetimagelistSuccess(dataResponse);

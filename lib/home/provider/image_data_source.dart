@@ -7,11 +7,11 @@ import 'package:excelledia/home/model/image_list.dart';
 class ImageDataSource {
   final Dio _dioHttp = Dio();
 
-  Future<List<ImageListModel>> getImageList() async {
+  Future<List<ImageListModel>> getImageList(String searchQuery) async {
     List<ImageListModel> imageList = [];
 
     final response = await _dioHttp.get(
-      APIurlLibrary.GET_IMAGE_API,
+      APIurlLibrary.GET_IMAGE_API + "$searchQuery&image_type=photo&pretty=true",
       options: Options(
         headers: {
           'Content-Type': 'application/json',
