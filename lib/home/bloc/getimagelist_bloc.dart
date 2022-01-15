@@ -1,3 +1,5 @@
+// ignore_for_file: annotate_overrides
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:excelledia/home/model/image_list.dart';
@@ -16,8 +18,6 @@ class GetimagelistBloc extends Bloc<GetimagelistEvent, GetimagelistState> {
   //     }
   //   });
   // }
-
-  @override
   Stream<GetimagelistState> mapEventToState(GetimagelistEvent event) async* {
     if (event is FetchImageListEvent) {
       yield* orderProductState(event.searchQuery);

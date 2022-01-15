@@ -1,4 +1,5 @@
 import 'package:excelledia/home/bloc/getimagelist_bloc.dart';
+import 'package:excelledia/home/customWidgets/image_card.dart';
 import 'package:excelledia/home/customWidgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,6 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
               const SearchSugestionBar(),
               BlocBuilder<GetimagelistBloc, GetimagelistState>(
                 builder: (context, state) {
+                  if (state is GetimagelistSuccess) {
+                    return CustomImageCard(
+                      imgUrl: state.imageList[0].largeImageURL,
+                    );
+                  }
                   return Container();
                 },
               )
