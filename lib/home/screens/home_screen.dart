@@ -1,5 +1,7 @@
+import 'package:excelledia/home/bloc/getimagelist_bloc.dart';
 import 'package:excelledia/home/customWidgets/search_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.title}) : super(key: key);
@@ -23,8 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              SearchSugestionBar(),
+            children: [
+              const SearchSugestionBar(),
+              BlocBuilder<GetimagelistBloc, GetimagelistState>(
+                builder: (context, state) {
+                  return Container();
+                },
+              )
             ],
           ),
         ),

@@ -7,12 +7,21 @@ part 'getimagelist_state.dart';
 
 class GetimagelistBloc extends Bloc<GetimagelistEvent, GetimagelistState> {
   final ImageDataSource _imageDataSource = ImageDataSource();
-  GetimagelistBloc() : super(GetimagelistInitial()) {
-    on<GetimagelistEvent>((event, emit) {
-      if (event is FetchImageListEvent) {
-        orderProductState(event.searchQuery);
-      }
-    });
+  GetimagelistBloc() : super(GetimagelistInitial());
+
+  //  {
+  //   on<GetimagelistEvent>((event, emit) {
+  //     if (event is FetchImageListEvent) {
+  //       orderProductState(event.searchQuery);
+  //     }
+  //   });
+  // }
+
+  @override
+  Stream<GetimagelistState> mapEventToState(GetimagelistEvent event) async* {
+    if (event is FetchImageListEvent) {
+      yield* orderProductState(event.searchQuery);
+    }
   }
 
   Stream<GetimagelistState> orderProductState(String searchQuery) async* {

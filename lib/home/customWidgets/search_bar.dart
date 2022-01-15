@@ -1,4 +1,6 @@
+import 'package:excelledia/home/bloc/getimagelist_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchSugestionBar extends StatefulWidget {
   const SearchSugestionBar({Key? key}) : super(key: key);
@@ -43,7 +45,10 @@ class _SearchSugestionBarState extends State<SearchSugestionBar> {
                       topRight: Radius.circular(6),
                       bottomRight: Radius.circular(6))),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<GetimagelistBloc>(context)
+                      .add(FetchImageListEvent(_controller.text));
+                },
                 icon: const Icon(Icons.search_rounded,
                     color: Colors.white, size: 34),
               ),
