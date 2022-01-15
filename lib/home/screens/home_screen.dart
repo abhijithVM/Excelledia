@@ -31,8 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
               BlocBuilder<GetimagelistBloc, GetimagelistState>(
                 builder: (context, state) {
                   if (state is GetimagelistSuccess) {
-                    return CustomImageCard(
-                      imgUrl: state.imageList[0].largeImageURL,
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height * 100,
+                      child: ListView.builder(
+                          itemCount: state.imageList.length,
+                          itemBuilder: (context, i) => CustomImageCard(
+                                imgUrl: state.imageList[i].largeImageURL,
+                              )),
                     );
                   }
                   return Container();
