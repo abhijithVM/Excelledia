@@ -23,8 +23,10 @@ class _SearchSugestionBarState extends State<SearchSugestionBar> {
           },
           controller: _controller,
           maxLines: 1,
-          onTap: () {
-            setState(() {});
+          onFieldSubmitted: (value) {
+            FocusScope.of(context).unfocus();
+            BlocProvider.of<GetimagelistBloc>(context)
+                .add(FetchImageListEvent(value));
           },
           decoration: InputDecoration(
             isDense: true,
@@ -46,6 +48,7 @@ class _SearchSugestionBarState extends State<SearchSugestionBar> {
                       bottomRight: Radius.circular(6))),
               child: IconButton(
                 onPressed: () {
+                  FocusScope.of(context).unfocus();
                   BlocProvider.of<GetimagelistBloc>(context)
                       .add(FetchImageListEvent(_controller.text));
                 },
