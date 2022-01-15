@@ -1,3 +1,4 @@
+import 'package:excelledia/home/customWidgets/search_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,7 +17,18 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const Center(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              SearchSugestionBar(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
