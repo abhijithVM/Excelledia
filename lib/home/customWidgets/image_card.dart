@@ -1,3 +1,4 @@
+import 'package:excelledia/core/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class CustomImageCard extends StatelessWidget {
       width: MediaQuery.of(context).size.width * .5,
       child: FadeInImage(
         fit: BoxFit.cover,
-        placeholder: const AssetImage('assets/placeHold.jpg'),
+        placeholder: const AssetImage(Assets.placeholderImg),
         image: NetworkImage(imgUrl ?? ""),
         imageErrorBuilder: (context, exception, stackTrack) =>
             const Icon(Icons.image_not_supported_sharp),

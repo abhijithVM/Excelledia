@@ -1,5 +1,5 @@
 import 'package:excelledia/home/bloc/getimagelist_bloc.dart';
-import 'package:excelledia/home/screens/home_screen.dart';
+import 'package:excelledia/home/screens/home_screen%20copy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(title: 'Excelledia'),
+      home: const HomeScreenCopy(title: 'Excelledia'),
     );
   }
 }

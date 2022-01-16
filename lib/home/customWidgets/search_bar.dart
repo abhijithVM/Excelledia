@@ -2,14 +2,14 @@ import 'package:excelledia/home/bloc/getimagelist_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SearchSugestionBar extends StatefulWidget {
-  const SearchSugestionBar({Key? key}) : super(key: key);
+class CustomSearchBar extends StatefulWidget {
+  const CustomSearchBar({Key? key}) : super(key: key);
 
   @override
-  _SearchSugestionBarState createState() => _SearchSugestionBarState();
+  _CustomSearchBarState createState() => _CustomSearchBarState();
 }
 
-class _SearchSugestionBarState extends State<SearchSugestionBar> {
+class _CustomSearchBarState extends State<CustomSearchBar> {
   final _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
