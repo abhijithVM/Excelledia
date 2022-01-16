@@ -11,7 +11,8 @@ class ImageDataSource {
     List<ImageListModel> imageList = [];
 
     final response = await _dioHttp.get(
-      APIurlLibrary.GET_IMAGE_API + "$searchQuery&image_type=photo&pretty=true",
+      APIurlLibrary.GET_IMAGE_API +
+          "$searchQuery&image_type=photo", //&pretty=true
       options: Options(
         headers: {
           'Content-Type': 'application/json',
