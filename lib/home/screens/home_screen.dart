@@ -9,16 +9,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreenCopy extends StatefulWidget {
-  const HomeScreenCopy({Key? key, required this.title}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<HomeScreenCopy> createState() => _HomeScreenCopyState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenCopyState extends State<HomeScreenCopy> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +38,18 @@ class _HomeScreenCopyState extends State<HomeScreenCopy> {
                 builder: (context, state) {
                   debugPrint(state.toString());
                   if (state is GetimagelistSuccess) {
-                    return ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
+                    return GridView.count(
                       shrinkWrap: true,
-                      itemCount: state.imageList.length,
-                      itemBuilder: (context, i) => CustomImageCard(
-                          imgUrl: state.imageList[i].largeImageURL),
-                      separatorBuilder: (context, index) {
-                        return const Divider();
-                      },
+                      padding: const EdgeInsets.all(12),
+                      physics: const NeverScrollableScrollPhysics(),
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      children: List.generate(
+                        state.imageList.length,
+                        (index) =>
+                            CustomImageCard(imgModel: state.imageList[index]),
+                      ),
                     );
                   }
                   if (state is GetimagelistLoading) {
@@ -70,6 +73,8 @@ class _HomeScreenCopyState extends State<HomeScreenCopy> {
   Widget _buildPlaceHold(String label) => Padding(
         padding: const EdgeInsets.only(top: 12),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(label),
             const Image(
@@ -79,19 +84,3 @@ class _HomeScreenCopyState extends State<HomeScreenCopy> {
         ),
       );
 }
-
-// Column(
-//                         children: List.generate(
-//                             state.imageList.length,
-//                             (i) => CustomImageCard(
-//                                   imgUrl: state.imageList[i].largeImageURL,
-//                                 )));
-
-
-
-
-
-
-
-
-
