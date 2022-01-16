@@ -1,4 +1,5 @@
 import 'package:excelledia/core/assets.dart';
+import 'package:excelledia/home/screens/image_view_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:excelledia/home/model/image_list.dart';
@@ -10,22 +11,22 @@ class CustomImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => showDialog(
-        //** instead of display the largesize_imageURL in a separate screen */
-        context: context,
-        builder: (context) => AlertDialog(
-          content: _viewDetailCard(context, imgModel ?? const ImageListModel()),
+        child: SizedBox(
+          height: 70,
+          child: customFadeInImage(imgModel?.previewURL ?? "",
+              imgFit: BoxFit.fitHeight),
         ),
-      ),
-      child: SizedBox(
-        height: 70,
-        child: customFadeInImage(imgModel?.previewURL ?? "",
-            imgFit: BoxFit.fitHeight),
-      ),
-    );
+        onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      SingleImageViewScreen(imageDetail: imgModel)),
+            ));
   }
 }
 
+//** used for showing enhanced image url via alertBox */
+// ignore: unused_element
 Widget _viewDetailCard(BuildContext context, ImageListModel imageDetail) =>
     Stack(
       clipBehavior: Clip.antiAlias,
