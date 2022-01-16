@@ -11,6 +11,7 @@ class CustomImageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => showDialog(
+        //** instead of display the largesize_imageURL in a separate screen */
         context: context,
         builder: (context) => AlertDialog(
           content: _viewDetailCard(context, imgModel ?? const ImageListModel()),
@@ -26,16 +27,36 @@ class CustomImageCard extends StatelessWidget {
 }
 
 Widget _viewDetailCard(BuildContext context, ImageListModel imageDetail) =>
-    Container(
-      width: MediaQuery.of(context).size.width * .90,
-      padding: const EdgeInsets.all(6),
-      child: Stack(
-        clipBehavior: Clip.antiAlias,
-        children: [
-          customFadeInImage(imageDetail.largeImageURL ?? "",
-              imgFit: BoxFit.contain),
-        ],
-      ),
+    Stack(
+      clipBehavior: Clip.antiAlias,
+      children: [
+        customFadeInImage(imageDetail.largeImageURL ?? ""),
+        Positioned(
+          bottom: 2,
+          right: 2,
+          child: ColoredBox(
+            color: Colors.brown.shade400,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 5.0, right: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: ClipOval(
+                      child: customFadeInImage(imageDetail.userImageURL ?? "",
+                          imgFit: BoxFit.contain),
+                    ),
+                  ),
+                  Text("${imageDetail.user}",
+                      style: Theme.of(context).textTheme.button,
+                      overflow: TextOverflow.fade),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
 
 Widget customFadeInImage(String imgUrl, {BoxFit imgFit = BoxFit.cover}) =>
@@ -47,7 +68,7 @@ Widget customFadeInImage(String imgUrl, {BoxFit imgFit = BoxFit.cover}) =>
       placeholder: const AssetImage(Assets.placeholderImg),
       image: NetworkImage(imgUrl),
       imageErrorBuilder: (context, exception, stackTrack) =>
-          const Icon(Icons.image_not_supported_sharp),
+          const Icon(Icons.image_not_supported_sharp, color: Colors.grey),
       placeholderErrorBuilder: (context, error, stackTrace) =>
           const CupertinoActivityIndicator(),
     );

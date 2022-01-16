@@ -25,8 +25,10 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           maxLines: 1,
           onFieldSubmitted: (value) {
             FocusScope.of(context).unfocus();
-            BlocProvider.of<GetimagelistBloc>(context)
-                .add(FetchImageListEvent(value));
+            if (value.isNotEmpty) {
+              BlocProvider.of<GetimagelistBloc>(context)
+                  .add(FetchImageListEvent(value));
+            }
           },
           decoration: InputDecoration(
             isDense: true,
@@ -49,8 +51,10 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               child: IconButton(
                 onPressed: () {
                   FocusScope.of(context).unfocus();
-                  BlocProvider.of<GetimagelistBloc>(context)
-                      .add(FetchImageListEvent(_controller.text));
+                  if (_controller.text.isNotEmpty) {
+                    BlocProvider.of<GetimagelistBloc>(context)
+                        .add(FetchImageListEvent(_controller.text));
+                  }
                 },
                 icon: const Icon(Icons.search_rounded,
                     color: Colors.white, size: 34),
