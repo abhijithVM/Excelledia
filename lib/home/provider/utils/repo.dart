@@ -4,8 +4,6 @@ import 'package:excelledia/home/provider/utils/error.dart';
 import 'package:excelledia/home/provider/utils/failure.dart';
 
 typedef RemoteExecutable<T> = Future<T> Function();
-
-// ignore: missing_return
 Future<Either<Failure, T>> repoExecute<T>(RemoteExecutable<T> func) async {
   try {
     final T result = await func();

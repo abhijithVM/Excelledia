@@ -6,9 +6,6 @@ import 'package:excelledia/home/provider/utils/repo.dart';
 
 class ImageRepository {
   final ImageDataSource _remoteDataSource = ImageDataSource();
-
-  ImageRepository();
-
   Future<Either<Failure, List<ImageListModel>>> getImageList(
       String searchQuery) async {
     return repoExecute<List<ImageListModel>>(

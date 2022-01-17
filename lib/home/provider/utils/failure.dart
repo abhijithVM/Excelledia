@@ -1,5 +1,4 @@
-// ignore_for_file: overridden_fields, annotate_overrides
-
+// ignore_for_file: annotate_overrides, overridden_fields
 import 'package:equatable/equatable.dart';
 import 'error.dart';
 
