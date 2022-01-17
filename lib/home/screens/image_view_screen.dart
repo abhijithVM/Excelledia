@@ -9,21 +9,24 @@ class SingleImageViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text("image details"),
         leading: CloseButton(
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            customFadeInImage(imageDetail?.largeImageURL ?? ""),
-            _userDetail(imageDetail, context),
-          ],
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              customFadeInImage(imageDetail?.largeImageURL ?? ""),
+              _userDetail(imageDetail, context),
+            ],
+          ),
         ),
       ),
     );
