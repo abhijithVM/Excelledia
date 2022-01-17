@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:excelledia/home/model/image_list.dart';
@@ -19,6 +21,8 @@ class GetimagelistBloc extends Bloc<GetimagelistEvent, GetimagelistState> {
     yield (GetimagelistLoading());
     final result = await _repository.getImageList(searchQuery);
     result.fold(
-        (l) => emit(GetimagelistFailed()), (r) => emit(GetimagelistSuccess(r)));
+        (l) => emit(GetimagelistFailed()),
+        (r) => emit(GetimagelistSuccess(
+            r))); // Left fold for Failstate  Right fold for success
   }
 }
