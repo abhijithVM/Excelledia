@@ -55,10 +55,11 @@ Widget _userDetail(ImageListModel? imageDetail, BuildContext context) =>
                   style: const TextStyle(fontSize: 12),
                   children: [
                     TextSpan(
-                      text: "${imageDetail?.user}",
+                      text: "${imageDetail?.user} ",
                       style: Theme.of(context).textTheme.button,
                     )
                   ]),
+              overflow: TextOverflow.fade,
             )
           ],
         ),

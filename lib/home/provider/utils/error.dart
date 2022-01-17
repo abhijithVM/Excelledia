@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:dio/dio.dart';
 
 class ApiException implements Exception {

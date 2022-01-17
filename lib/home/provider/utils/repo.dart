@@ -3,8 +3,6 @@ import 'package:dio/dio.dart' show DioError, DioErrorType;
 import 'package:excelledia/home/provider/utils/error.dart';
 import 'package:excelledia/home/provider/utils/failure.dart';
 
-
-
 typedef RemoteExecutable<T> = Future<T> Function();
 
 // ignore: missing_return
@@ -19,22 +17,22 @@ Future<Either<Failure, T>> repoExecute<T>(RemoteExecutable<T> func) async {
     } else {
       switch (err.type) {
         case DioErrorType.connectTimeout:
-          return Left(ConnectionTimeout());
+          return const Left(ConnectionTimeout());
         case DioErrorType.sendTimeout:
-          return Left(ConnectionTimeout());
+          return const Left(ConnectionTimeout());
         case DioErrorType.receiveTimeout:
-          return Left(ConnectionTimeout());
+          return const Left(ConnectionTimeout());
         case DioErrorType.response:
-          return Left(ServerFailure());
+          return const Left(ConnectionTimeout());
         case DioErrorType.cancel:
-          return Left(ServerFailure());
+          return const Left(ConnectionTimeout());
         case DioErrorType.other:
-          return Left(NetworkFailure());
+          return const Left(NetworkFailure());
       }
     }
   } on TypeError catch (_) {
-    return Left(NetworkFailure(message: "Failed to process data."));
+    return const Left(NetworkFailure(message: "Failed to process data."));
   } catch (exception) {
-    return Left(ServerFailure(title: "Unexpected Failure"));
+    return const Left(ConnectionTimeout(title: "Unexpected Failure"));
   }
 }

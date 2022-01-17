@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_function_literals_in_foreach_calls
 
 import 'package:dio/dio.dart';
 import 'package:excelledia/core/api_library.dart';
@@ -9,10 +8,9 @@ class ImageDataSource {
 
   Future<List<ImageListModel>> getImageList(String searchQuery) async {
     List<ImageListModel> imageList = [];
-
+    String path = APIurlLibrary.GET_IMAGE_API + "$searchQuery&image_type=photo";
     final response = await _dioHttp.get(
-      APIurlLibrary.GET_IMAGE_API +
-          "$searchQuery&image_type=photo", //&pretty=true
+      path,
       options: Options(
         headers: {
           'Content-Type': 'application/json',
@@ -21,11 +19,11 @@ class ImageDataSource {
       ),
     );
 
-    (response.data['hits'] as List).forEach((element) {
+    for (var element in (response.data['hits'] as List)) {
       imageList.add(
         ImageListModel.fromJson(element),
       );
-    });
+    }
 
     return imageList;
   }
