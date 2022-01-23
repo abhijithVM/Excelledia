@@ -8,7 +8,7 @@ part 'getimagelist_event.dart';
 part 'getimagelist_state.dart';
 
 class GetimagelistBloc extends Bloc<GetimagelistEvent, GetimagelistState> {
-  final ImageRepository _repository = ImageRepository();
+  final ImageRepository _reopsitory = ImageRepository();
   GetimagelistBloc() : super(GetimagelistInitial());
   @override
   Stream<GetimagelistState> mapEventToState(GetimagelistEvent event) async* {
@@ -19,7 +19,7 @@ class GetimagelistBloc extends Bloc<GetimagelistEvent, GetimagelistState> {
 
   Stream<GetimagelistState> getSearchImageList(String searchQuery) async* {
     yield (GetimagelistLoading());
-    final result = await _repository.getImageList(searchQuery);
+    final result = await _reopsitory.getImageList(searchQuery);
     result.fold(
         (l) => emit(GetimagelistFailed()),
         (r) => emit(GetimagelistSuccess(
