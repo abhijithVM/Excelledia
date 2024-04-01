@@ -20,6 +20,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             if (value != null && value.isEmpty) {
               return "required";
             }
+            return null;
           },
           controller: _controller,
           maxLines: 1,
@@ -53,14 +54,15 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                   FocusScope.of(context).unfocus();
                   if (_controller.text.isNotEmpty) {
                     BlocProvider.of<GetimagelistBloc>(context)
-                        .add(FetchImageListEvent(_controller.text));
+                        .add(FetchImageListEvent(_controller.text  , ));
                   }
                 },
                 icon: const Icon(Icons.search_rounded,
-                    color: Colors.white, size: 34),
+                    color: Colors.white, size: 34,   ),
               ),
             ),
           ),
         ));
   }
+ 
 }

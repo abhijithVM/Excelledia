@@ -16,7 +16,7 @@ class CustomAutoHideAppBarDelegate extends SliverPersistentHeaderDelegate {
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: DefaultTextStyle.merge(
-            style: theme.primaryTextTheme.subtitle1,
+            style: theme.primaryTextTheme.titleMedium,
             child: IconTheme.merge(
               data: theme.primaryIconTheme,
               child: child!,

@@ -1,9 +1,8 @@
-
 import 'package:dio/dio.dart';
 import 'package:excelledia/core/api_library.dart';
 import 'package:excelledia/home/model/image_list.dart';
 
-class ImageDataSource {
+class ImageRepository {
   final Dio _dioHttp = Dio();
 
   Future<List<ImageListModel>> getImageList(String searchQuery) async {

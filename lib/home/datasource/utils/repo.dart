@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart' show DioError, DioErrorType;
-import 'package:excelledia/home/provider/utils/error.dart';
-import 'package:excelledia/home/provider/utils/failure.dart';
+import 'package:excelledia/home/datasource/utils/error.dart';
+import 'package:excelledia/home/datasource/utils/failure.dart';
 
 typedef RemoteExecutable<T> = Future<T> Function();
 Future<Either<Failure, T>> repoExecute<T>(RemoteExecutable<T> func) async {
